@@ -131,6 +131,7 @@ class Detox extends Helper {
       launchApp: true,
       reuse: false,
       reloadReactNative: false,
+      url: undefined,
     };
 
     const detoxConf = require(path.join(
@@ -162,7 +163,10 @@ class Detox extends Helper {
       },
     });
     if (this.options.reloadReactNative) {
-      return this.device.launchApp({ newInstance: true });
+      await this.device.launchApp({
+        newInstance: true,
+        url: this.options.url
+      });
     }
   }
 
@@ -174,7 +178,7 @@ class Detox extends Helper {
     if (this.options.reloadReactNative) {
       await this.device.reloadReactNative();
     } else {
-      await this.device.launchApp({ newInstance: true });
+      await this.device.launchApp({ newInstance: true, url: this.options.url });
     }
   }
 
