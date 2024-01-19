@@ -110,6 +110,12 @@ class Detox extends Helper {
       process.argv.push('--artifacts-location');
       process.argv.push(global.output_dir + '/');
     }
+    if (this.options.loglevel && process.argv.indexOf('--loglevel') < 0) {
+      process.argv.push(`--loglevel ${this.options.loglevel}`);
+    }
+    if (this.options.debugSynchronization && process.argv.indexOf('--debugSynchronization') < 0) {
+      process.argv.push(`--debugSynchronization`);
+    }
   }
 
   _useDetoxFunctions() {
@@ -157,6 +163,12 @@ class Detox extends Helper {
       await internalDetox.init({
         argv: {
           configuration: this.options.configuration,
+          ...(!this.options.loglevel ? {} : {
+            loglevel: this.options.loglevel,
+          }),
+          ...(!this.options.debugSynchronization ? {} : {
+            'debug-synchronization': this.options.debugSynchronization,
+          }),
         },
         testRunnerArgv: {
           reuse,
