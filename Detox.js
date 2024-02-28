@@ -159,7 +159,7 @@ class Detox extends Helper {
   async _beforeSuite() {
     const { reuse, launchApp } = this.options;
     // running within _init doesn't appear to initialize Helpers['Detox'] in time for other helpers' _beforeSuite
-    if (detoxInternal.getStatus() == 'inactive') {
+    if (internalDetox.getStatus() == 'inactive') {
       await internalDetox.init({
         argv: {
           configuration: this.options.configuration,
