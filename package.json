@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/codeceptjs/detox-helper#readme",
   "dependencies": {
-    "detox": "~20.13.5"
+    "detox": "~20.15.0"
   },
   "devDependencies": {
     "codeceptjs": "3.5.12",
