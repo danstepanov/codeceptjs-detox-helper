@@ -913,6 +913,11 @@ class Detox extends Helper {
 
   _detectLocator(locator, type = 'type') {
     if (typeof locator === 'object') {
+      // support more advanced Detox matchers / using Detox's global `by`.
+      // TODO: does not support certain match combinations e.g. using `.and`
+      if (locator.value)
+        return locator;
+
       if (locator.android && this.device.getPlatform() === PLATFORM.android)
         return this._detectLocator(locator.android, type);
       if (locator.ios && this.device.getPlatform() === PLATFORM.ios)
